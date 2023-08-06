@@ -5,7 +5,7 @@ import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerModule } from '@app/common';
-import Joi from 'joi';
+import * as Joi from 'joi';
 
 @Module({
   imports: [
