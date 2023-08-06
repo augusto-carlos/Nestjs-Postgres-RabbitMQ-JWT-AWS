@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ModelDefinition, MongooseModule } from '@nestjs/mongoose';
+import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
 import { ConfigModule } from '../config/config.module';
 
 @Module({
@@ -15,15 +15,12 @@ import { ConfigModule } from '../config/config.module';
   ],
 })
 export class DatabaseModule {
-  // static forFeature(document) {
-  //   return MongooseModule.forFeature([
-  //     {
-  //       name: document.constructor.name,
-  //       schema: SchemaFactory.createForClass(document),
-  //     },
-  //   ]);
-  // }
-  static forFeature(models: ModelDefinition[]) {
-    return MongooseModule.forFeature(models);
+  static forFeature(documents: any[]) {
+    return MongooseModule.forFeature(
+      documents.map((doc) => ({
+        name: doc.collectionName,
+        schema: SchemaFactory.createForClass(doc),
+      })),
+    );
   }
 }
