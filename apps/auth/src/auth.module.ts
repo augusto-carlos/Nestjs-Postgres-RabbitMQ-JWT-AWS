@@ -12,10 +12,11 @@ import * as Joi from 'joi';
     UsersModule,
     LoggerModule,
     ConfigModule.forRoot({
+      isGlobal: true,
       validationSchema: Joi.object({
-        MONGODB_URI: Joi.string().required(),
-        JWT_SECRET: Joi.string().required(),
-        JWT_EXPIRATION: Joi.string().required(),
+        MONGODB_URI: Joi.string(),
+        JWT_SECRET: Joi.string(),
+        JWT_EXPIRATION: Joi.string(),
       }),
     }),
     JwtModule.registerAsync({
