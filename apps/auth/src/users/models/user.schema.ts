@@ -5,7 +5,7 @@ export class UserDocument extends AbstractDocument {
   static readonly collectionName = 'users';
 
   @Prop()
-  username: string;
+  email: string;
 
   @Prop()
   password: string;

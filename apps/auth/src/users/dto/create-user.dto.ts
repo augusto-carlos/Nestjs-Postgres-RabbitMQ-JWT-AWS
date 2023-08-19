@@ -1,9 +1,10 @@
-import { IsString, MinLength } from 'class-validator';
+import { IsEmail, IsString, MinLength } from 'class-validator';
 import { UserDocument } from '../models/user.schema';
 
 export class CreateUserDto extends UserDocument {
   @IsString()
-  username: string;
+  @IsEmail()
+  email: string;
 
   @IsString()
   @MinLength(8)
