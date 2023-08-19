@@ -1,7 +1,16 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { FilterQuery } from 'mongoose';
+import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -13,7 +22,13 @@ export class UsersController {
   }
 
   @Get()
-  findAll(@Query() filterQuery: FilterQuery<any>) {
+  @UseGuards(JwtAuthGuard)
+  getUser(@Query() filterQuery: FilterQuery<any>) {
     return this.service.findAll(filterQuery);
+  }
+
+  @Delete()
+  delete(_id: string) {
+    return this.service.remove(_id);
   }
 }

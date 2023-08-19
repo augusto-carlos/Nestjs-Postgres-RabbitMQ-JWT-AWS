@@ -6,30 +6,34 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerModule } from '@app/common';
 import * as Joi from 'joi';
+import { LocalStrategy } from './strategies/local.strategy';
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
     UsersModule,
     LoggerModule,
+    PassportModule,
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
         MONGODB_URI: Joi.string(),
         JWT_SECRET: Joi.string(),
-        JWT_EXPIRATION: Joi.string(),
+        JWT_EXPIRATION_TIME: Joi.string(),
       }),
     }),
     JwtModule.registerAsync({
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
         signOptions: {
-          expiresIn: `${configService.get('JWT_EXPIRATION')}s`,
+          expiresIn: `${configService.get('JWT_EXPIRATION_TIME')}s`,
         },
       }),
       inject: [ConfigService],
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}

@@ -1,15 +1,44 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersRepository } from './users.repository';
 import { FilterQuery } from 'mongoose';
 import { UpdateUserDto } from './dto/update-user.dto';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly repository: UsersRepository) {}
 
-  create(createUserDto: CreateUserDto) {
-    return this.repository.create(createUserDto);
+  async create(createUserDto: CreateUserDto) {
+    await this.validateCreateUserDto(createUserDto);
+    return this.repository.create({
+      ...createUserDto,
+      password: await bcrypt.hash(createUserDto.password, 10),
+    });
+  }
+
+  private async validateCreateUserDto(createUserDto: CreateUserDto) {
+    try {
+      await this.repository.findOne({ email: createUserDto.email });
+    } catch (err) {
+      return;
+    }
+    throw new UnprocessableEntityException('Email already exists.');
+  }
+
+  async verifyUser(email: string, password: string): Promise<any> {
+    const user = await this.repository.findOne({ email });
+
+    const passwordIsValid = await bcrypt.compare(password, user.password);
+    if (!passwordIsValid) {
+      throw new UnauthorizedException('Credentials are not valid');
+    }
+
+    return user;
   }
 
   findAll(filterQuery: FilterQuery<any>) {
