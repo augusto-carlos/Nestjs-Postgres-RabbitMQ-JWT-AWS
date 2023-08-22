@@ -1,26 +1,26 @@
 services:
   reservations:
-    build: 
+    build:
       context: .
       dockerfile: ./apps/reservations/Dockerfile
       target: development
     command: pnpm run start:dev reservations
     env_file:
       - ./apps/reservations/.env
-    ports: 
+    ports:
       - '3000:3000'
     volumes:
       - .:/usr/src/app
   auth:
-    build: 
+    build:
       context: .
       dockerfile: ./apps/auth/Dockerfile
       target: development
     command: pnpm run start:dev auth
     env_file:
       - ./apps/auth/.env
-    
-    ports: 
+
+    ports:
       - '3001:3001'
     volumes:
       - .:/usr/src/app
