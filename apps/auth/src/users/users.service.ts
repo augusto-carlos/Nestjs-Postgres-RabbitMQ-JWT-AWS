@@ -8,6 +8,7 @@ import { UsersRepository } from './users.repository';
 import { FilterQuery } from 'mongoose';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcryptjs';
+import { UserDocument } from './models/user.schema';
 
 @Injectable()
 export class UsersService {
@@ -30,7 +31,7 @@ export class UsersService {
     throw new UnprocessableEntityException('Email already exists.');
   }
 
-  async verifyUser(email: string, password: string): Promise<any> {
+  async verifyUser(email: string, password: string): Promise<UserDocument> {
     const user = await this.repository.findOne({ email });
 
     const passwordIsValid = await bcrypt.compare(password, user.password);

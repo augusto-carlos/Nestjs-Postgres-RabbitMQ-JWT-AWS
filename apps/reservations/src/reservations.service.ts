@@ -8,8 +8,11 @@ import { FilterQuery } from 'mongoose';
 export class ReservationsService {
   constructor(private readonly repository: ReservationsRepository) {}
 
-  create(createReservationDto: CreateReservationDto) {
-    return this.repository.create(createReservationDto);
+  create(createReservationDto: CreateReservationDto, userId: string) {
+    return this.repository.create({
+      ...createReservationDto,
+      userId,
+    });
   }
 
   findAll(filterQuery: FilterQuery<any>) {
