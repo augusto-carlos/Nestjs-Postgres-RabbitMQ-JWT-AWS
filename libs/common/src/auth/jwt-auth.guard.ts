@@ -3,9 +3,10 @@ import {
   ExecutionContext,
   Inject,
   Injectable,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, catchError, map, tap } from 'rxjs';
 import { AUTH_SERVICE } from '../constants/services';
 import { UserDto } from '../dto';
 
@@ -28,6 +29,9 @@ export class JwtAuthGuard implements CanActivate {
           context.switchToHttp().getRequest().user = res;
         }),
         map(() => true),
-      );
+      )
+      .pipe(() => {
+        throw new UnauthorizedException('Credentials are not valid');
+      });
   }
 }
