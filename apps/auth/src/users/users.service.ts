@@ -8,7 +8,7 @@ import { UsersRepository } from './users.repository';
 import { FilterQuery } from 'mongoose';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcryptjs';
-import { UserDocument } from './models/user.schema';
+import { UserDocument } from '@app/common';
 
 @Injectable()
 export class UsersService {

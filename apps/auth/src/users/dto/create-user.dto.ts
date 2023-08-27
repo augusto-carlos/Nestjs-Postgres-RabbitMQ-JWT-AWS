@@ -1,12 +1,9 @@
-import { IsEmail, IsString, MinLength } from 'class-validator';
-import { UserDocument } from '../models/user.schema';
+import { IsEmail, IsStrongPassword } from 'class-validator';
 
-export class CreateUserDto extends UserDocument {
-  @IsString()
+export class CreateUserDto {
   @IsEmail()
   email: string;
 
-  @IsString()
-  @MinLength(8)
+  @IsStrongPassword()
   password: string;
 }
