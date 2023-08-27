@@ -59,6 +59,9 @@ dependencies:
   nestjs-pino:
     specifier: ^3.3.0
     version: 3.3.0(@nestjs/common@10.0.0)(pino-http@8.4.0)
+  nodemailer:
+    specifier: ^6.9.4
+    version: 6.9.4
   passport:
     specifier: ^0.6.0
     version: 0.6.0
@@ -80,6 +83,9 @@ dependencies:
   rxjs:
     specifier: ^7.8.1
     version: 7.8.1
+  stripe:
+    specifier: ^13.2.0
+    version: 13.2.0
 
 devDependencies:
   '@nestjs/cli':
@@ -103,6 +109,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.3.1
     version: 20.3.1
+  '@types/nodemailer':
+    specifier: ^6.4.9
+    version: 6.4.9
   '@types/passport-jwt':
     specifier: ^3.0.9
     version: 3.0.9
@@ -1386,6 +1395,12 @@ packages:
 
   /@types/node@20.3.1:
     resolution: {integrity: sha512-EhcH/wvidPy1WeML3TtYFGR83UzjxeWRen9V402T8aUGYsCHOmfoisV3ZSg03gAFIbLq8TnWOJ0f4cALtnSEUg==}
+
+  /@types/nodemailer@6.4.9:
+    resolution: {integrity: sha512-XYG8Gv+sHjaOtUpiuytahMy2mM3rectgroNbs6R3djZEKmPNiIJwe9KqOJBGzKKnNZNKvnuvmugBgpq3w/S0ig==}
+    dependencies:
+      '@types/node': 20.3.1
+    dev: true
 
   /@types/parse-json@4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -4312,6 +4327,11 @@ packages:
     resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
     dev: true
 
+  /nodemailer@6.9.4:
+    resolution: {integrity: sha512-CXjQvrQZV4+6X5wP6ZIgdehJamI63MFoYFGGPtHudWym9qaEHDNdPzaj5bfMCvxG1vhAileSWW90q7nL0N36mA==}
+    engines: {node: '>=6.0.0'}
+    dev: false
+
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
@@ -4679,7 +4699,6 @@ packages:
     engines: {node: '>=0.6'}
     dependencies:
       side-channel: 1.0.4
-    dev: true
 
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -5124,6 +5143,14 @@ packages:
   /strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  /stripe@13.2.0:
+    resolution: {integrity: sha512-4a2UHpe/tyxP3sxSGhuKMgbW8hQnqSQIPMigXC8kW3P0+BpsITpKDP+xxriTMDkRAP0xTQwzxcqhfqB+/404Mg==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@types/node': 20.3.1
+      qs: 6.11.2
+    dev: false
 
   /superagent@8.0.9:
     resolution: {integrity: sha512-4C7Bh5pyHTvU33KpZgwrNKh/VQnvgtCSqPRfJAUdmrtSYePVzVg4E4OzsrbkhJj9O7SO6Bnv75K/F8XVZT8YHA==}
