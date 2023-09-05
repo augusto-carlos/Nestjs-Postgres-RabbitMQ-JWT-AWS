@@ -1,6 +1,6 @@
 # compiled output
 /dist
-/node_modules
+**/node_modules
 
 # Logs
 logs
@@ -29,6 +29,7 @@ lerna-debug.log*
 .dockerrc
 
 # IDE - VSCode
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

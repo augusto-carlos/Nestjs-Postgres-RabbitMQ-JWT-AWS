@@ -2,8 +2,8 @@ dist
 node_modules
 README.md
 LICENCE
+.vscode
 .env.example
-.env
 .dockerrc
 .prettierrc
 .eslintrc.js
