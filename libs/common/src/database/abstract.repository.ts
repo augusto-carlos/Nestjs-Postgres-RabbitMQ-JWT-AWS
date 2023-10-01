@@ -15,7 +15,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
   }
 
   async findOne(filterQuery: FilterQuery<TDocument>): Promise<TDocument> {
-    const document = await this.model.findOne(filterQuery, {}, { lean: true });
+    const document = await this.model.findOne(filterQuery, {});
     if (!document) this.handleNotFoundError(filterQuery);
 
     return document;
@@ -26,7 +26,6 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     update: UpdateQuery<TDocument>,
   ): Promise<TDocument> {
     const document = await this.model.findOneAndUpdate(filterQuery, update, {
-      lean: true,
       new: true,
     });
     if (!document) this.handleNotFoundError(filterQuery);
@@ -35,7 +34,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
   }
 
   async find(filterQuery?: FilterQuery<TDocument>): Promise<TDocument[]> {
-    const document = this.model.find(filterQuery, {}, { lean: true });
+    const document = this.model.find(filterQuery, {});
     if (!document) this.handleNotFoundError(filterQuery);
 
     return document;
