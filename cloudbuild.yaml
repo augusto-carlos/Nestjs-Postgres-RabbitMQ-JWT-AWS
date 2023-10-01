@@ -17,8 +17,7 @@ steps:
         'southamerica-east1-docker.pkg.dev/slepper-api/reservations/prodution',
       ]
 
-# Auth
-steps:
+  # Auth
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
@@ -31,13 +30,9 @@ steps:
       ]
   - name: 'gcr.io/cloud-builder/docker'
     args:
-      [
-        'push',
-        'southamerica-east1-docker.pkg.dev/slepper-api/auth/prodution',
-      ]
+      ['push', 'southamerica-east1-docker.pkg.dev/slepper-api/auth/prodution']
 
-# Notifications
-steps:
+  # Notifications
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
@@ -55,8 +50,7 @@ steps:
         'southamerica-east1-docker.pkg.dev/slepper-api/notifications/prodution',
       ]
 
-# Payments
-steps:
+  # Payments
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
