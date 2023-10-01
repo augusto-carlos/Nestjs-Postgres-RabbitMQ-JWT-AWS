@@ -1,0 +1,75 @@
+# Reversations
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'southamerica-east1-docker.pkg.dev/slepper-api/reservations/prodution',
+        '-f',
+        'apps/reservations/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builder/docker'
+    args:
+      [
+        'push',
+        'southamerica-east1-docker.pkg.dev/slepper-api/reservations/prodution',
+      ]
+
+# Auth
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'southamerica-east1-docker.pkg.dev/slepper-api/auth/prodution',
+        '-f',
+        'apps/auth/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builder/docker'
+    args:
+      [
+        'push',
+        'southamerica-east1-docker.pkg.dev/slepper-api/auth/prodution',
+      ]
+
+# Notifications
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'southamerica-east1-docker.pkg.dev/slepper-api/notifications/prodution',
+        '-f',
+        'apps/notifications/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builder/docker'
+    args:
+      [
+        'push',
+        'southamerica-east1-docker.pkg.dev/slepper-api/notifications/prodution',
+      ]
+
+# Payments
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'southamerica-east1-docker.pkg.dev/slepper-api/payments/prodution',
+        '-f',
+        'apps/payments/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builder/docker'
+    args:
+      [
+        'push',
+        'southamerica-east1-docker.pkg.dev/slepper-api/payments/prodution',
+      ]
