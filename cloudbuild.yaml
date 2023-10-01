@@ -10,7 +10,7 @@ steps:
         'apps/reservations/Dockerfile',
         '.',
       ]
-  - name: 'gcr.io/cloud-builder/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'push',
@@ -28,7 +28,7 @@ steps:
         'apps/auth/Dockerfile',
         '.',
       ]
-  - name: 'gcr.io/cloud-builder/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       ['push', 'southamerica-east1-docker.pkg.dev/slepper-api/auth/prodution']
 
@@ -43,7 +43,7 @@ steps:
         'apps/notifications/Dockerfile',
         '.',
       ]
-  - name: 'gcr.io/cloud-builder/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'push',
@@ -61,7 +61,7 @@ steps:
         'apps/payments/Dockerfile',
         '.',
       ]
-  - name: 'gcr.io/cloud-builder/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'push',
