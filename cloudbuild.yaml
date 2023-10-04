@@ -32,7 +32,7 @@ steps:
     args:
       ['push', 'southamerica-east1-docker.pkg.dev/slepper-api/auth/prodution']
 
-  Notifications
+  # Notifications
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
