@@ -16,4 +16,23 @@ spec:
     spec:
       containers:
       - image: southamerica-east1-docker.pkg.dev/slepper-api/notifications/prodution
-        name: prodution
+        name: notifications
+        env:
+          - name: TCP_PORT
+            value: '3000'
+          - name: GOOGLE_OAUTH_CLIENT_ID
+            value: 861387520592-smsr63m8tkcp8ocem12ojiqeh1jpcb73.apps.googleusercontent.com
+          - name: SMTP_USER
+            value: sleeperapplication@gmail.com
+          - name: GOOGLE_OAUTH_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: google-oauth
+                key: clientSecret
+          - name: GOOGLE_OAUTH_REFRESH_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: google-oauth
+                key: refreshToken
+        ports:
+          - containerPort: 3000

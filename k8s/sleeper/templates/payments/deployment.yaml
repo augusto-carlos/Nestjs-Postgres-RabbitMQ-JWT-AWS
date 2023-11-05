@@ -16,4 +16,18 @@ spec:
     spec:
       containers:
       - image: southamerica-east1-docker.pkg.dev/slepper-api/payments/prodution
-        name: prodution
+        name: payments
+        env:
+          - name: TPC_PORT
+            value: '3001'
+          - name: NOTIFICATIONS_SERVICE_HOST
+            value: notifications
+          - name: NOTIFICATIONS_SERVICE_TCP_PORT
+            value: '3000'
+          - name: STRIPE_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: stripe
+                key: apiKey
+        ports:
+          - containerPort: 3001

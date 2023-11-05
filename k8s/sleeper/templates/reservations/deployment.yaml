@@ -18,8 +18,20 @@ spec:
       - image: southamerica-east1-docker.pkg.dev/slepper-api/reservations/prodution
         name: reservations
         env:
-        - name: MONGODB_URI
-          valueFrom:
-            secretKeyRef:
-              name: mongodb
-              key: connectionStriong
+          - name: HTTP_PORT
+            value: '3004'
+          - name: AUTH_SERVICE_HOST
+            value: 'auth-tcp'
+          - name: AUTH_SERVICE_TCP_PORT
+            value: '3002'
+          - name: PAYMENTS_SERVICE_HOST
+            value: 'payments'
+          - name: PAYMENTS_SERVICE_TCP_PORT
+            value: '3001'
+          - name: MONGODB_URI
+            valueFrom:
+              secretKeyRef:
+                name: mongodb
+                key: connectionString
+        ports:
+          - containerPort: 3004
