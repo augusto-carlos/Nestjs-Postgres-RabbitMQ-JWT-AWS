@@ -15,25 +15,25 @@ spec:
         app: auth
     spec:
       containers:
-      - image: southamerica-east1-docker.pkg.dev/slepper-api/auth/prodution
-        name: prodution
-        env:
-          - name: HTTP_PORT
-            value: '3003'
-          - name: TCP_PORT
-            value: '3002'
-          - name: JWT_EXPIRATION_TIME
-            value: '3600'
-          - name: MONGODB_URI
-            valueFrom:
-              secretKeyRef:
-                name: mongodb
-                key: connectionString
-          - name: JWT_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: jwt
-                key: jwtSecret
-        ports:
-        - containerPort: 3003
-        - containerPort: 3002
+        - image: southamerica-east1-docker.pkg.dev/slepper-api/auth/prodution
+          name: auth
+          env:
+            - name: HTTP_PORT
+              value: '3003'
+            - name: TCP_PORT
+              value: '3002'
+            - name: JWT_EXPIRATION_TIME
+              value: '3600'
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb
+                  key: connectionString
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt
+                  key: jwtSecret
+          ports:
+            - containerPort: 3003
+            - containerPort: 3002

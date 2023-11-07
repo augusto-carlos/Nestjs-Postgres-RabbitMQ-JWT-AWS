@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ReservationsService } from './reservations.service';
 import { ReservationsController } from './reservations.controller';
-import { DatabaseModule, LoggerModule } from '@app/common';
+import { DatabaseModule, HealthModule, LoggerModule } from '@app/common';
 import { ReservationsRepository } from './reservations.repository';
 import { ReservationDocument } from './models/reservation.schema';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -14,6 +14,7 @@ import { AUTH_SERVICE, PAYMENTS_SERVICE } from '@app/common';
     DatabaseModule,
     DatabaseModule.forFeature([ReservationDocument]),
     LoggerModule,
+    HealthModule,
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({

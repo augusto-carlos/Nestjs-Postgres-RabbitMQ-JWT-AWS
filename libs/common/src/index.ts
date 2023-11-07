@@ -6,3 +6,4 @@ export * from './constants';
 export * from './models';
 export * from './decorators';
 export * from './dto';
+export * from './health';
