@@ -30,7 +30,7 @@ This repo contains a microservices API built with NestJS, Stripe, Nodemailer, JW
 
 ## 🔌 Installation
 
-If you want to run the apps outside of the docker network i can install the packages and run the server
+If you want to run the apps all you have to do is install the packages and run the server
 
 ```bash
 $ pnpm install
